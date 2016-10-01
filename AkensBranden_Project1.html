@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Starter Pokemon Personality Quiz</title>
+  </head>
+  <style>
+/*CSS reset*/
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, font, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td {
+    	margin: 0;
+    	padding: 0;
+    	border: 0;
+    	outline: 0;
+    	font-weight: inherit;
+    	font-style: inherit;
+    	font-size: 100%;
+    	font-family: inherit;
+    	vertical-align: baseline;
+    }
+    
+    :focus {
+    	outline: 0;
+    }
+
+    body {
+    	color: red;
+    	background: white;
+    }
+    ol, ul {
+    	list-style: none;
+    }
+    table {
+    	border-collapse: separate;
+    	border-spacing: 0;
+    }
+    caption, th, td {
+    	text-align: left;
+    	font-weight: bold;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+    	content: "";
+    }
+    blockquote, q {
+    	quotes: "" "";
+    }
+
+    body {
+      background-color: darkblue;
+      background-image: url(http://pokemongoenjoy.com/wp-content/uploads/2016/07/longico-23-512.png);
+      background-position: center top;
+      background-repeat: no-repeat;
+    }
+    
+
+
+
+    .questions {
+      max-width: 960px;
+      margin: auto;
+      font-family: "Verdana", sans-serif;
+    }
+    form {
+      margin: 10px 10px 450px 10px;
+      clear: both;
+    }
+    .lastform {
+      margin: 10px 10px 450px 10px
+    }
+
+    h1 {
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 45px;
+      text-align: center;
+      margin: 85px 0px 25px 0px;
+    }
+    h2 {
+      font-weight: normal;
+      font-size: 30px;
+      color: #ffd221;
+      margin-bottom: 15px;
+     text-shadow:
+   -1px -1px 0 #0a20af,  
+    1px -1px 0 #0a20af,
+    -1px 1px 0 #0a20af,
+     1px 1px 0 #0a20af;
+       
+    }
+    h3 {
+      font-weight: normal;
+      font-size: 18px;
+      color: #ffffff;
+      margin-bottom: 25px;
+    }
+    h4 {
+      text-transform: uppercase;
+      color: #ffd221;
+      font-size: 22px;
+      font-weight: bold;
+    
+      margin-bottom: 25px;
+    }
+    form input {
+      margin: 30px;
+    }
+
+    .bigButton-box {
+      background-color: #ffffff;
+      opacity: 0.9;
+      width: 100%;
+      height: 80px;
+      text-align: center;
+      line-height: 85px;
+      position: fixed;
+      bottom: 0px;
+      border-top: 1px solid rgba(0,41,89,0.20);
+    }
+    .button {
+      padding: 12px 64px;
+      text-decoration: none;
+      font-size: 24px;
+      background-color: #ffffff;
+    /*  margin-top: 12px;*/
+      color: #ea0e0e;
+      border-radius: 4px;
+      border-style: none;
+    }
+    .button:hover {
+      padding: 12px 64px;
+      text-decoration: none;
+      font-size: 24px;
+      background-color: #ea0e0e;
+      color: #ffffff;
+      border-radius: 4px;
+      border-style: none;
+    }
+
+    .results {
+      background-color: #ffffff;
+      margin-bottom: 30px;
+      width: 100%;
+      clear: both;
+      text-align: center;
+      border-top: 1px solid rgba(0,41,89,0.20);
+      border-bottom: 1px solid rgba(0,41,89,0.20);
+
+      font-family: "Verdana", sans-serif;
+    }
+    .results h3 {
+      display: inline-block;
+      padding-top: 40px;
+      padding-bottom: 20px;
+
+    }
+    #resultOne {
+      display: none;
+    }
+    #resultTwo {
+      display: none;
+    }
+    #resultThree {
+      display: none;
+    }
+    #resultFour {
+      display: none;
+    }
+      #resultFive {
+      display: none;
+    }
+    .cleared{
+      clear: both;
+      margin: auto;
+    }
+    .paragraph{
+      width: 100%;
+      max-width: 960px;
+      margin: auto;
+      margin-bottom: 25px;
+    }
+    img{
+      width: 100%;
+      max-width: 700px;
+    }
+
+    form label {
+      background-color: #ffffff;
+      font-size: 18px;
+      width: auto;
+      color: #03013d;
+    }
+    form label:hover {
+      background-color: #c2c4c2;
+      color: #f2f1ea;
+    }
+    .cell{
+      width: 100%;
+      height: 85px;
+      float: left;
+    }
+    .cell input {
+      float: left;
+    }
+    .cell p {
+      padding-top: 27px;
+    }
+    .answer-box {
+      margin-bottom: 1px;
+      background-color: #ffffff;
+      padding: 10px 0px 0px 0px;
+    }
+    .answer-box-top {
+      border-radius: 4px 4px 0px 0px;
+    }
+    .answer-box-bottom {
+
+      box-shadow: 0px 1px 2px 0px rgba(0,41,89,0.10);
+    }
+    .button {
+      float: right;
+      margin: 0px 16px 70px 0px;
+    }
+    .about{
+      font-size:25px;
+      font-weight: bold;
+      width: auto;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 180px;
+   
+}
+       
+    }
+
+  </style>
+
+  <body>
+    <div class="questions">
+    <h1>Starter Pokemon Personality Quiz</h1>
+    <p class="about">
+      Find out which Pokemon is destined to be your starter!
+    </p>
+    <form>
+    <br>
+      <h4>Question 1</h4>
+      <h3>What is your favorite condiment?</h3>
+      <blockquote>
+          <br><label for="asr1-a" class="cell answer-box answer-box-top">
+              <input type="radio" name="question1" id="asr1-a" value="1">
+            <p>Ketchup</p>
+          </label>
+          <br><label for="asr1-b" class="cell answer-box">
+              <input type="radio" name="question1" id="asr1-b" value="2">
+            <p>Sriracha</p>
+          </label>
+          <br><label for="asr1-c" class="cell answer-box">
+              <input type="radio" name="question1" id="asr1-c" value="3">
+            <p>Tarter Sauce</p>
+          </label>
+          <br><label for="asr1-d" class="cell answer-box answer-box-bottom">
+              <input type="radio" name="question1" id="asr1-d" value="4">
+            <p>Mustard</p>
+            </label>
+            <br><label for="asr1-e" class="cell answer-box answer-box-bottom">
+              <input type="radio" name="question1" id="asr1-e" value="5">
+            <p>Honey</p>
+        </label>
+      </blockquote>
+    </form>
+
+    <form>
+    <br>
+      <h4>Question 2</h4>
+      <h3>Which of these qualities best describes you?</h3>
+      <blockquote>
+        <br><label for="asr2-a" class="cell answer-box answer-box-top">
+            <input type="radio" name="question2" id="asr2-a" value="asr2-a">
+          <p>Friendly</p>
+        </label>
+        <br><label for="asr2-b" class="cell answer-box">
+            <input type="radio" name="question2" id="asr2-b" value="asr2-b">
+          <p>Strong Willed</p>
+        </label>
+        <br><label for="asr2-c" class="cell answer-box">
+            <input type="radio" name="question2" id="asr2-c" value="asr2-c">
+          <p>Confident</p>
+        </label>
+        <br><label for="asr2-d" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question2" id="asr2-d" value="asr2-d">
+          <p>Lively</p>
+      </label>
+      <br><label for="asr2-e" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question2" id="asr2-e" value="asr2-e">
+          <p>Laid Back</p>
+      </label>
+      </blockquote>
+    </form>
+
+    <form>
+    <br>
+      <h4>Question 3</h4>
+      <h3>What type of weather do you prefer?</h3>
+      <blockquote>
+        <br><label for="asr3-a" class="cell answer-box answer-box-top">
+            <input type="radio" name="question3" id="asr3-a" value="asr3-a">
+          <p>Slight overcast</p>
+        </label>
+        <br><label for="asr3-b" class="cell answer-box">
+            <input type="radio" name="question3" id="asr3-b" value="asr3-b">
+          <p>Hot and sunny</p>
+        </label>
+        <br><label for="asr3-c" class="cell answer-box">
+            <input type="radio" name="question3" id="asr3-c" value="asr3-c">
+          <p>Cold and rainy</p>
+        </label>
+        <br><label for="asr3-d" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question3" id="asr3-d" value="asr3-d">
+          <p>Moderate sunshine</p>
+      </label>
+          <br><label for="asr3-e" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question3" id="asr3-e" value="asr3-e">
+          <p>Can I just stay inside?</p>
+      </label>
+      </blockquote>
+    </form>
+
+    <form>
+    <br>
+      <h4>Question 4</h4>
+      <h3>How do you spend your free time?</h3>
+      <blockquote>
+        <br><label for="asr4-a" class="cell answer-box answer-box-top">
+            <input type="radio" name="question4" id="asr4-a" value="asr4-a">
+          <p>Hang out with friends</p>
+        </label>
+        <br><label for="asr4-b" class="cell answer-box">
+            <input type="radio" name="question4" id="asr4-b" value="asr4-b">
+          <p>Do something adventurous and worthwhile!</p>
+        </label>
+        <br><label for="asr4-c" class="cell answer-box">
+            <input type="radio" name="question4" id="asr4-c" value="asr4-c">
+          <p>Stay in and relax</p>
+        </label>
+        <br><label for="asr4-d" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question4" id="asr4-d" value="asr4-d">
+          <p>Go out and enjoy nature</p>
+      </label>
+        <br><label for="asr4-e" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question4" id="asr4-e" value="asr4-e">
+          <p>Do a little bit of everything</p>
+      </label>
+      </blockquote>
+    </form>
+
+    <form>
+    <br>
+      <h4>Question 5</h4>
+      <h3>What is your battle style like?</h3>
+      <blockquote>
+        <br><label for="asr5-a" class="cell answer-box answer-box-top">
+            <input type="radio" name="question5" id="asr5-a" value="asr5-a">
+          <p>Speed is everything</p>
+        </label>
+        <br><label for="asr5-b" class="cell answer-box">
+            <input type="radio" name="question5" id="asr5-b" value="asr5-b">
+          <p>Hyper offense!</p>
+        </label>
+        <br><label for="asr5-c" class="cell answer-box">
+            <input type="radio" name="question5" id="asr5-c" value="asr5-c">
+          <p>Defensive and patient</p>
+        </label>
+        <br><label for="asr5-d" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question5" id="asr5-d" value="asr5-d">
+          <p>Balance is best</p>
+      </label>
+         <br><label for="asr5-e" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question5" id="asr5-e" value="asr5-e">
+          <p>Prepare for anything</p>
+      </label>
+      </blockquote>
+    </form>
+
+    <form>
+    <br>
+      <h4>Question 6</h4>
+      <h3>What are you most afraid of?</h3>
+      <blockquote>
+        <br><label for="asr6-a" class="cell answer-box answer-box-top">
+            <input type="radio" name="question6" id="asr6-a" value="asr6-a">
+          <p>Earthquakes</p>
+        </label>
+        <br><label for="asr6-b" class="cell answer-box">
+            <input type="radio" name="question6" id="asr6-b" value="asr6-b">
+          <p>Drowning</p>
+        </label>
+        <br><label for="asr6-c" class="cell answer-box">
+            <input type="radio" name="question6" id="asr6-c" value="asr6-c">
+          <p>Thunderstorms</p>
+        </label>
+        <br><label for="asr6-d" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question6" id="asr6-d" value="asr6-d">
+          <p>BUGS!</p>
+      </label>
+        <br><label for="asr6-d" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question6" id="asr6-d" value="asr6-d">
+          <p>Physical fights</p>
+      </label>
+      </blockquote>
+    </form>
+
+    <form>
+    <br>
+      <h4>Question 7</h4>
+      <h3>What is your favorite type of music?</h3>
+      <blockquote>
+        <br><label for="asr7-a" class="cell answer-box answer-box-top">
+            <input type="radio" name="question7" id="asr7-a" value="asr7-a">
+          <p>Electronic</p>
+        </label>
+        <br><label for="asr7-b" class="cell answer-box">
+            <input type="radio" name="question7" id="asr7-b" value="asr7-b">
+          <p>Rock and Roll</p>
+        </label>
+        <br><label for="asr7-c" class="cell answer-box">
+            <input type="radio" name="question7" id="asr7-c" value="asr7-c">
+          <p>Pop</p>
+        </label>
+        <br><label for="asr7-d" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question7" id="asr7-d" value="asr7-d">
+          <p>Folk</p>
+      </label>
+         <br><label for="asr7-e" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question7" id="asr7-e" value="asr7-e">
+          <p>Classical</p>
+      </label>
+      </blockquote>
+    </form>
+
+    <form>
+    <br>
+      <h4>Question 8</h4>
+      <h3>What is your favorite type of game?</h3>
+      <blockquote>
+        <br><label for="asr8-a" class="cell answer-box answer-box-top">
+            <input type="radio" name="question8" id="asr8-a" value="asr8-a">
+          <p>Anything hand-held or mobile</p>
+        </label>
+        <br><label for="asr8-b" class="cell answer-box">
+            <input type="radio" name="question8" id="asr8-b" value="asr8-b">
+          <p>Competitive fighting games</p>
+        </label>
+        <br><label for="asr8-c" class="cell answer-box">
+            <input type="radio" name="question8" id="asr8-c" value="asr8-c">
+          <p>Strategy games</p>
+        </label>
+        <br><label for="asr8-d" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question8" id="asr8-d" value="asr8-d">
+          <p>RPGs!</p>
+      </label>
+         <br><label for="asr8-e" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question8" id="asr8-e" value="asr8-e">
+          <p>Do boardgames count?</p>
+      </label>
+      </blockquote>
+    </form>
+
+    <form>
+    <br>
+      <h4>Question 9</h4>
+      <h3>Which of these locations interest you the most?</h3>
+      <blockquote>
+        <br><label for="asr9-a" class="cell answer-box answer-box-top">
+            <input type="radio" name="question9" id="asr9-a" value="asr9-a">
+          <p>The city, baby!</p>
+        </label>
+        <br><label for="asr9-b" class="cell answer-box">
+            <input type="radio" name="question9" id="asr9-b" value="asr9-b">
+          <p>Hawaii! Gotta love volcanoes</p>
+        </label>
+        <br><label for="asr9-c" class="cell answer-box">
+            <input type="radio" name="question9" id="asr9-c" value="asr9-c">
+          <p>The beach! Any beach! I love the ocean</p>
+        </label>
+        <br><label for="asr9-d" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question9" id="asr9-d" value="asr9-d">
+          <p>Somewhere tropical, please</p>
+      </label>
+          <br><label for="asr9-e" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question9" id="asr9-e" value="asr9-e">
+          <p>A nice park sounds good to me</p>
+      </label>
+      </blockquote>
+    </form>
+
+    <form class="lastform">
+    <br>
+      <h4>Question 10</h4>
+      <h3>What is your favorite color?</h3>
+      <blockquote>
+        <br><label for="asr10-a" class="cell answer-box answer-box-top">
+            <input type="radio" name="question10" id="asr10-a" value="asr10-a">
+          <p>Yellow</p>
+        </label>
+        <br><label for="asr10-b" class="cell answer-box">
+            <input type="radio" name="question10" id="asr10-b" value="asr10-b">
+          <p>Red</p>
+        </label>
+        <br><label for="asr10-c" class="cell answer-box">
+            <input type="radio" name="question10" id="asr10-c" value="asr10-c">
+          <p>Blue</p>
+        </label>
+        <br><label for="asr10-d" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question10" id="asr10-d" value="asr10-d">
+          <p>Green</p>
+      </label>
+       <br><label for="asr10-e" class="cell answer-box answer-box-bottom">
+            <input type="radio" name="question10" id="asr10-e" value="asr10-e">
+          <p>Uhh... can I choose them all!?</p>
+      </label>
+      </blockquote>
+
+    </form>
+    <input class="button" type="button" id="quizButton" value="Who's That Pokemon!?">
+  </div>
+
+  <div class="results">
+      <div>
+        <h3 id="text">Click to see which Starter you get!</h3>
+      </div>
+      <div id="resultOne">
+        <div class="paragraph">
+          <h2 class="cleared">Meet your starter, Pikachu!</h2>
+        </div>
+          <img src="Img/Pikachu.png" alt="Pikachu" class="cleared" />
+      </div>
+      <div id="resultTwo">
+        <div class="paragraph">
+          <h2 class="cleared">Meet your starter, Charmander!</h2>
+        </div>
+          <img src="Img/Charmander.png" alt="Charmander" class="cleared" />
+      </div>
+      <div id="resultThree">
+        <div class="paragraph">
+          <h2 class="cleared">Meet your starter, Squirtle!</h2>
+        </div>
+          <img src="Img/Squirtle.PNG" alt="Squirtle" class="cleared" />
+      </div>
+      <div id="resultFour">
+        <div class="paragraph">
+          <h2 class="cleared">Meet your starter, Bulbasaur!</h2>
+        </div>
+          <img src="Img/Bulbasaur.png" alt="Bulbasaur" class="cleared" />
+      </div>
+        <div id="resultFive">
+        <div class="paragraph">
+          <h2 class="cleared">Meet your starter, Eevee!</h2>
+        </div>
+          <img src="Img/Eevee.png" alt="Eevee" class="cleared" />
+      </div>
+  </div>
+
+  </body>
+  <script>
+
+    var button = document.getElementById("quizButton");
+    button.onclick = checkQuiz;
+
+    function checkQuiz() {
+        var result1 = 0, result2 = 0, result3 = 0, result4 = 0, result5 =0;
+
+        
+        var question1, question2, question3, question4, question5, question6, question7, question8, question9, question10;
+
+        //Question 1
+        var inputs1 = document.getElementsByName("question1");
+        if (inputs1[0].checked) {
+      		  question1 = inputs1[0].value;
+            result1 = result1 = result1 + 1;
+        } else if (inputs1[1].checked) {
+        		question1 = inputs1[1].value;
+            result2 = result2 = result2 + 1;
+        } else if (inputs1[2].checked) {
+        		question1 = inputs1[2].value;
+            result3 = result3 = result3 + 1;
+    	  } else if (inputs1[3].checked) {
+        		question1 = inputs1[3].value;
+            result4 = result4 = result4 + 1;
+    	  } else if (inputs1[4].checked) {
+            question1 = inputs1[4].value;
+            result5 = result5 = result5 + 1;
+        }
+        //Question 2
+        var inputs2 = document.getElementsByName("question2");
+        if (inputs2[0].checked) {
+      		  question2 = inputs2[0].value;
+            result1 = result1 = result1 + 1;
+        } else if (inputs2[1].checked) {
+        		question2 = inputs2[1].value;
+            result2 = result2 + 1;
+        } else if (inputs2[2].checked) {
+        		question2 = inputs2[2].value;
+            result3 = result3 + 1;
+    	  } else if (inputs2[3].checked) {
+        		question2 = inputs2[3].value;
+            result4 = result4 + 1;
+    	  }  else if (inputs2[4].checked) {
+            question2 = inputs2[4].value;
+            result5 = result5 = result5 + 1;
+        }
+        //Question 3
+        var inputs3 = document.getElementsByName("question3");
+        if (inputs3[0].checked) {
+      		  question3 = inputs3[0].value;
+            result1 = result1 + 1;
+        } else if (inputs3[1].checked) {
+        		question3 = inputs3[1].value;
+            result2 = result2 + 1;
+        } else if (inputs3[2].checked) {
+        		question3 = inputs3[2].value;
+            result3 = result3 + 1;
+    	  } else if (inputs3[3].checked) {
+        		question3 = inputs3[3].value;
+            result4 = result4 + 1;
+    	  }  else if (inputs3[4].checked) {
+            question3 = inputs3[4].value;
+            result5 = result5 = result5 + 1;
+        }
+        //Question 4
+        var inputs4 = document.getElementsByName("question4");
+        if (inputs4[0].checked) {
+      		  question4 = inputs4[0].value;
+            result1 = result1 + 1;
+        } else if (inputs4[1].checked) {
+        		question4 = inputs4[1].value;
+            result2 = result2 + 1;
+        } else if (inputs4[2].checked) {
+        		question4 = inputs4[2].value;
+            result3 = result3 + 1;
+    	  } else if (inputs3[3].checked) {
+        		question4 = inputs4[3].value;
+            result4 = result4 + 1;
+    	  }  else if (inputs4[4].checked) {
+            question4 = inputs4[4].value;
+            result5 = result5 = result5 + 1;
+        }
+        //Question 5
+        var inputs5 = document.getElementsByName("question5");
+        if (inputs5[0].checked) {
+            question5 = inputs5[0].value;
+            result1 = result1 + 1;
+        } else if (inputs5[1].checked) {
+            question5 = inputs5[1].value;
+            result2 = result2 + 1;
+        } else if (inputs4[2].checked) {
+            question5 = inputs5[2].value;
+            result3 = result3 + 1;
+        } else if (inputs5[3].checked) {
+            question5 = inputs5[3].value;
+            result4 = result4 + 1;
+        }  else if (inputs5[4].checked) {
+            question5 = inputs5[4].value;
+            result5 = result5 = result5 + 1;
+        }
+        //Question 6
+        var inputs6 = document.getElementsByName("question6");
+        if (inputs6[0].checked) {
+            question6 = inputs6[0].value;
+            result1 = result1 + 1;
+        } else if (inputs6[1].checked) {
+            question6 = inputs6[1].value;
+            result2 = result2 + 1;
+        } else if (inputs6[2].checked) {
+            question6 = inputs6[2].value;
+            result3 = result3 + 1;
+        } else if (inputs6[3].checked) {
+            question6 = inputs6[3].value;
+            result4 = result4 + 1;
+        }  else if (inputs6[4].checked) {
+            question6 = inputs6[4].value;
+            result5 = result5 = result5 + 1;
+        }
+        //Question 7
+        var inputs7 = document.getElementsByName("question7");
+        if (inputs7[0].checked) {
+            question7 = inputs7[0].value;
+            result1 = result1 + 1;
+        } else if (inputs7[1].checked) {
+            question7 = inputs7[1].value;
+            result2 = result2 + 1;
+        } else if (inputs7[2].checked) {
+            question7 = inputs7[2].value;
+            result3 = result3 + 1;
+        } else if (inputs7[3].checked) {
+            question7 = inputs7[3].value;
+            result4 = result4 + 1;
+        }  else if (inputs7[4].checked) {
+            question7 = inputs7[4].value;
+            result5 = result5 = result5 + 1;
+        }
+        //Question 8
+        var inputs8 = document.getElementsByName("question8");
+        if (inputs8[0].checked) {
+            question8 = inputs8[0].value;
+            result1 = result1 + 1;
+        } else if (inputs8[1].checked) {
+            question8 = inputs8[1].value;
+            result2 = result2 + 1;
+        } else if (inputs8[2].checked) {
+            question8 = inputs8[2].value;
+            result3 = result3 + 1;
+        } else if (inputs8[3].checked) {
+            question8 = inputs8[3].value;
+            result4 = result4 + 1;
+        }  else if (inputs8[4].checked) {
+            question8 = inputs8[4].value;
+            result5 = result5 = result5 + 1;
+        }
+        //Question 9
+        var inputs9 = document.getElementsByName("question9");
+        if (inputs9[0].checked) {
+            question9 = inputs9[0].value;
+            result1 = result1 + 1;
+        } else if (inputs9[1].checked) {
+            question9 = inputs9[1].value;
+            result2 = result2 + 1;
+        } else if (inputs9[2].checked) {
+            question9 = inputs9[2].value;
+            result3 = result3 + 1;
+        } else if (inputs9[3].checked) {
+            question9 = inputs9[3].value;
+            result4 = result4 + 1;
+        }  else if (inputs9[4].checked) {
+            question9 = inputs9[4].value;
+            result5 = result5 = result5 + 1;
+        }
+
+        //Question 10
+        var inputs10 = document.getElementsByName("question10");
+        if (inputs10[0].checked) {
+            question10 = inputs10[0].value;
+            result1 = result1 + 1;
+        } else if (inputs10[1].checked) {
+            question10 = inputs10[1].value;
+            result2 = result2 + 1;
+        } else if (inputs10[2].checked) {
+            question10 = inputs10[2].value;
+            result3 = result3 + 1;
+        } else if (inputs10[3].checked) {
+            question10 = inputs10[3].value;
+            result4 = result4 + 1;
+        }  else if (inputs10[4].checked) {
+            question10 = inputs10[4].value;
+            result5 = result5 = result5 + 1;
+        }
+  
+
+
+        if (!question1 || !question2 || !inputs4 || !inputs5 || !inputs6 || !inputs7 || !inputs8 || !inputs9 || !inputs10 || !question10) {
+            alert("Finish the quiz, please!")
+        } else if ((result1 >= result2) && (result1 >= result3) && (result1 >= result4) && (result1 >= result5)) {
+            document.getElementById("text").style.display = "none";
+            document.getElementById("resultTwo").style.display = "none";
+            document.getElementById("resultThree").style.display = "none";
+            document.getElementById("resultFour").style.display = "none";
+            document.getElementById("resultFive").style.display = "none";
+            document.getElementById("resultOne").style.display = "inline-block";
+        } else if ((result2 > result1) && (result2 > result3) && (result2 > result4) && (result2 > result5)) {
+            document.getElementById("text").style.display = "none";
+            document.getElementById("resultOne").style.display = "none";
+            document.getElementById("resultThree").style.display = "none";
+            document.getElementById("resultFour").style.display = "none";
+            document.getElementById("resultFive").style.display = "none";
+            document.getElementById("resultTwo").style.display = "inline-block";
+        } else if ((result3 > result1) && (result3 > result1) && (result3 > result1) && (result3 > result5)) {
+            document.getElementById("text").style.display = "none";
+            document.getElementById("resultOne").style.display = "none";
+            document.getElementById("resultTwo").style.display = "none";
+            document.getElementById("resultFour").style.display = "none";
+            document.getElementById("resultFive").style.display = "none";
+            document.getElementById("resultThree").style.display = "inline-block";
+        } else if ((result4 > result1) && (result4 > result2) && (result4 > result3) && (result4 > result5)) {
+            document.getElementById("text").style.display = "none";
+            document.getElementById("resultOne").style.display = "none";
+            document.getElementById("resultTwo").style.display = "none";
+            document.getElementById("resultThree").style.display = "none";
+            document.getElementById("resultFive").style.display = "none";
+            document.getElementById("resultFour").style.display = "inline-block";
+        }else if ((result5 > result1) && (result5 > result2) && (result5 > result3) && (result5 > result4)) {
+            document.getElementById("text").style.display = "none";
+            document.getElementById("resultOne").style.display = "none";
+            document.getElementById("resultTwo").style.display = "none";
+            document.getElementById("resultThree").style.display = "none";
+            document.getElementById("resultFour").style.display = "none";
+            document.getElementById("resultFive").style.display = "inline-block";
+        }
+    }
+
+  </script>
+</html>
