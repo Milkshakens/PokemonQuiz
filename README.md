@@ -1,2 +1,2 @@
 # PokemonQuiz
-A Pokemon Quiz For Basic Info Of Pokemon
+A Quiz For Basic Info Of Pokemon
