@@ -1,2 +1,4 @@
 # PokemonQuiz
-A quiz assignment for my class
+A Quiz For Basic Info Of Pokemon
+
+A Fun Loving Quiz For Anime Lover
