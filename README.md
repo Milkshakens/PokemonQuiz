@@ -1,2 +1,2 @@
 # PokemonQuiz
-A quiz assignment for my class
+a pokemon quiz for basic info of pokemon
